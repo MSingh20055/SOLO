@@ -360,3 +360,54 @@
   font-family: 'Outfit', sans-serif;
   text-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
 }
+
+/* MOBILE OPTIMIZATIONS */
+@media (max-width: 768px) {
+  .view {
+    padding: 16px;
+    gap: 16px;
+  }
+  .hunter-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 24px;
+  }
+  .hunter-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .stat-block {
+    align-items: flex-start;
+  }
+  .mission-nav {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mission-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .calendar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .quest-cat-title {
+    font-size: 16px;
+  }
+  .quest-task-text {
+    font-size: 13px;
+  }
+  .quest-task-link {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  .pomodoro-display {
+    font-size: 48px;
+  }
+}
+@media (max-width: 480px) {
+  .calendar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
