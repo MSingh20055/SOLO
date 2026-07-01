@@ -1,0 +1,86 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px var(--accent-glow);
+  min-width: 400px;
+}
+
+.levelup-rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent 0deg,
+    rgba(0, 229, 255, 0.1) 30deg,
+    transparent 60deg,
+    rgba(0, 229, 255, 0.1) 90deg,
+    transparent 120deg,
+    rgba(0, 229, 255, 0.1) 150deg,
+    transparent 180deg,
+    rgba(0, 229, 255, 0.1) 210deg,
+    transparent 240deg,
+    rgba(0, 229, 255, 0.1) 270deg,
+    transparent 300deg,
+    rgba(0, 229, 255, 0.1) 330deg,
+    transparent 360deg
+  );
+  transform: translate(-50%, -50%);
+  animation: rotateRays 20s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes rotateRays {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.modal-content h2 {
+  font-size: 48px;
+  color: var(--text-main);
+  text-shadow: 0 0 20px var(--accent-glow);
+  margin-bottom: 8px;
+}
+
+.modal-content h2.quest-clear {
+  color: var(--accent);
+}
+
+.levelup-level {
+  font-family: 'Outfit', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.levelup-sub {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.xp-earned {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
