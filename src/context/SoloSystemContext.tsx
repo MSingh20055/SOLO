@@ -9,8 +9,6 @@ export interface AppState {
   xp: number;
   level: number;
   lastCompletedIndex: number;
-  leetcode150Done: Record<string, boolean>;
-  sql50Done: Record<string, boolean>;
 }
 
 interface SoloSystemContextType {
@@ -23,8 +21,6 @@ interface SoloSystemContextType {
   computeStreak: () => number;
   rankForLevel: (level: number) => typeof RANKS[0];
   xpThreshold: (level: number) => number;
-  toggleLeetcode150: (name: string) => void;
-  toggleSql50: (name: string) => void;
 }
 
 const defaultState = (): AppState => ({
@@ -35,8 +31,6 @@ const defaultState = (): AppState => ({
   xp: 0,
   level: 1,
   lastCompletedIndex: -1,
-  leetcode150Done: {},
-  sql50Done: {},
 });
 
 const SoloSystemContext = createContext<SoloSystemContextType | undefined>(undefined);
@@ -109,20 +103,6 @@ export const SoloSystemProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }
   };
 
-  const toggleLeetcode150 = (name: string) => {
-    setState(prev => ({
-      ...prev,
-      leetcode150Done: { ...prev.leetcode150Done, [name]: !prev.leetcode150Done?.[name] }
-    }));
-  };
-
-  const toggleSql50 = (name: string) => {
-    setState(prev => ({
-      ...prev,
-      sql50Done: { ...prev.sql50Done, [name]: !prev.sql50Done?.[name] }
-    }));
-  };
-
   const computeStreak = () => {
     let streak = 0;
     for (let i = 0; i < state.completed.length; i++) {
@@ -146,9 +126,7 @@ export const SoloSystemProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       setDay,
       computeStreak,
       rankForLevel,
-      xpThreshold,
-      toggleLeetcode150,
-      toggleSql50
+      xpThreshold
     }}>
       {children}
     </SoloSystemContext.Provider>

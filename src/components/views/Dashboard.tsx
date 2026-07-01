@@ -1,16 +1,12 @@
 import React from 'react';
 import { useSoloSystem } from '../../context/SoloSystemContext';
-import { TOTAL_DAYS, BOSS_DAYS_1IDX } from '../../data/roadmap';
-import clsx from 'clsx';
 import './views.css';
 import { motion } from 'framer-motion';
 
 export const Dashboard: React.FC = () => {
-  const { state, setDay, computeStreak, rankForLevel, xpThreshold } = useSoloSystem();
+  const { state, computeStreak, rankForLevel } = useSoloSystem();
   
   const rank = rankForLevel(state.level);
-  const need = xpThreshold(state.level);
-  const done = state.completed.filter(Boolean).length;
 
   return (
     <motion.section 

@@ -1,6 +1,8 @@
 /* ======================================================
    SOLO SYSTEM — 45 Day Placement Roadmap (NeetCode 250 Edition)
    ====================================================== */
+import { LEETCODE_150 } from './leetcode150';
+import { SQL_50 } from './sql50';
 
 export const STORAGE_KEY = "soloSystemState_v3";
 export const TOTAL_DAYS = 45;
@@ -9,7 +11,7 @@ export const BOSS_DAYS_1IDX = [7, 14, 21, 28, 35, 42, 45]; // 1-indexed days tha
 /* ---------- NEETCODE 250, GROUPED EXACTLY AS NEETCODE ORGANIZES THEM ---------- */
 /* Each problem is [name, leetcodeUrl] */
 
-export const NEETCODE_GROUPS = [
+export const NEETCODE_GROUPS: any[] = [
   ["Arrays & Hashing", [["Contains Duplicate","https://leetcode.com/problems/contains-duplicate/"], ["Valid Anagram","https://leetcode.com/problems/valid-anagram/"], ["Two Sum","https://leetcode.com/problems/two-sum/"], ["Group Anagrams","https://leetcode.com/problems/group-anagrams/"], ["Top K Frequent Elements","https://leetcode.com/problems/top-k-frequent-elements/"], ["Encode and Decode Strings","https://leetcode.com/problems/encode-and-decode-strings/"], ["Product of Array Except Self","https://leetcode.com/problems/product-of-array-except-self/"], ["Valid Sudoku","https://leetcode.com/problems/valid-sudoku/"], ["Longest Consecutive Sequence","https://leetcode.com/problems/longest-consecutive-sequence/"], ["Merge Sorted Array","https://leetcode.com/problems/merge-sorted-array/"], ["Sort Colors","https://leetcode.com/problems/sort-colors/"], ["Concatenation of Array","https://leetcode.com/problems/concatenation-of-array/"], ["Replace Elements with Greatest Element on Right Side","https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/"], ["Is Subsequence","https://leetcode.com/problems/is-subsequence/"], ["Length of Last Word","https://leetcode.com/problems/length-of-last-word/"], ["Roman to Integer","https://leetcode.com/problems/roman-to-integer/"], ["Majority Element","https://leetcode.com/problems/majority-element/"], ["Move Zeroes","https://leetcode.com/problems/move-zeroes/"], ["Intersection of Two Arrays II","https://leetcode.com/problems/intersection-of-two-arrays-ii/"], ["First Unique Character in a String","https://leetcode.com/problems/first-unique-character-in-a-string/"]]],
   ["Two Pointers", [["Valid Palindrome","https://leetcode.com/problems/valid-palindrome/"], ["Two Sum II (Sorted Array)","https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"], ["3Sum","https://leetcode.com/problems/3sum/"], ["Container With Most Water","https://leetcode.com/problems/container-with-most-water/"], ["Trapping Rain Water","https://leetcode.com/problems/trapping-rain-water/"], ["Reverse String","https://leetcode.com/problems/reverse-string/"], ["Squares of a Sorted Array","https://leetcode.com/problems/squares-of-a-sorted-array/"], ["Backspace String Compare","https://leetcode.com/problems/backspace-string-compare/"]]],
   ["Sliding Window", [["Best Time to Buy & Sell Stock","https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"], ["Longest Substring Without Repeating Characters","https://leetcode.com/problems/longest-substring-without-repeating-characters/"], ["Longest Repeating Character Replacement","https://leetcode.com/problems/longest-repeating-character-replacement/"], ["Permutation in String","https://leetcode.com/problems/permutation-in-string/"], ["Minimum Window Substring","https://leetcode.com/problems/minimum-window-substring/"], ["Sliding Window Maximum","https://leetcode.com/problems/sliding-window-maximum/"], ["Maximum Average Subarray I","https://leetcode.com/problems/maximum-average-subarray-i/"], ["Fruit Into Baskets","https://leetcode.com/problems/fruit-into-baskets/"], ["Frequency of the Most Frequent Element","https://leetcode.com/problems/frequency-of-the-most-frequent-element/"]]],
@@ -32,9 +34,9 @@ export const NEETCODE_GROUPS = [
   ["Design", [["Design HashMap","https://leetcode.com/problems/design-hashmap/"], ["Design Circular Queue","https://leetcode.com/problems/design-circular-queue/"], ["Design Underground System","https://leetcode.com/problems/design-underground-system/"], ["Insert Delete GetRandom O(1)","https://leetcode.com/problems/insert-delete-getrandom-o1/"], ["Design Hit Counter","https://leetcode.com/problems/design-hit-counter/"]]],
 ];
 
-export const NEETCODE_250 = [];
-NEETCODE_GROUPS.forEach(([pattern, problems]) => {
-  problems.forEach(([name, url]) => NEETCODE_250.push({ name, pattern, url }));
+export const NEETCODE_250: any[] = [];
+NEETCODE_GROUPS.forEach(([pattern, problems]: any) => {
+  problems.forEach(([name, url]: any) => NEETCODE_250.push({ name, pattern, url }));
 });
 
 /* ---------- CORE / BACKEND / PROJECT / AI CONTENT FOR EACH NON-BOSS DAY ---------- */
@@ -97,11 +99,13 @@ export const DAY_CONTENT = [
 
 /* ---------- BUILD THE 45-DAY ROADMAP ---------- */
 
-function buildRoadmap(){
-  const roadmap = [];
+function buildRoadmap(): any[] {
+  const roadmap: any[] = [];
   const dsaQueue = [...NEETCODE_250];
+  const lc150Queue = [...LEETCODE_150];
+  const sqlQueue = [...SQL_50];
   let contentIdx = 0;
-  let recentForReview = [];
+  let recentForReview: any[] = [];
 
   // 38 non-boss days need to cover 250 problems → ~7 per day
   const CHUNK_SIZE = 7;
@@ -134,6 +138,8 @@ function buildRoadmap(){
           ? ["FINAL BOSS — Explain RAG + Agents + Prompting to an interviewer, no notes"]
           : ["Mock Q&A — rapid-fire on this week's AI/RAG/Agents topics"],
         boss: true,
+        leetcode150: lc150Queue.splice(0, Math.ceil(lc150Queue.length / (TOTAL_DAYS - day + 1))).map(p => ({ text: p.name, url: p.url })),
+        sql: day <= 10 ? sqlQueue.splice(0, Math.ceil(sqlQueue.length / (10 - day + 1))).map(p => ({ text: p.name, url: p.url })) : [],
       });
     } else {
       const chunk = dsaQueue.splice(0, CHUNK_SIZE);
@@ -148,6 +154,8 @@ function buildRoadmap(){
         webdev: c.webdev,
         project: c.project,
         ai: c.ai,
+        leetcode150: lc150Queue.splice(0, Math.ceil(lc150Queue.length / (TOTAL_DAYS - day + 1))).map(p => ({ text: p.name, url: p.url })),
+        sql: day <= 10 ? sqlQueue.splice(0, Math.ceil(sqlQueue.length / (10 - day + 1))).map(p => ({ text: p.name, url: p.url })) : [],
       });
     }
   }
@@ -157,11 +165,13 @@ function buildRoadmap(){
 export const ROADMAP = buildRoadmap();
 
 export const CAT_META = {
-  dsa:     { label:"DSA",      icon:"🧮" },
-  core:    { label:"Core CS",  icon:"🗄️" },
-  webdev: { label:"Web Dev",  icon:"🌐" },
-  project: { label:"Project",  icon:"🏗️" },
-  ai:      { label:"AI / ML",  icon:"🤖" },
+  dsa:         { label:"DSA",          icon:"🧮" },
+  leetcode150: { label:"Top Interview Questions", icon:"🎯" },
+  sql:         { label:"SQL",          icon:"💾" },
+  core:        { label:"Core CS",      icon:"🗄️" },
+  webdev:     { label:"Web Dev",      icon:"🌐" },
+  project:     { label:"Project",      icon:"🏗️" },
+  ai:          { label:"AI / ML",      icon:"🤖" },
 };
 
 export const RANKS = [
@@ -175,20 +185,4 @@ export const RANKS = [
 ];
 
 export const BOSS_DAY_INDICES = BOSS_DAYS_1IDX.map(d => d - 1); // 0-indexed, for completed[] lookups
-
-export const ACHIEVEMENTS = [
-  { id:"first_day",   icon:"🎯", name:"First Step",        desc:"Complete Day 1", check:(s: any)=>s.completed[0] },
-  { id:"first_week",  icon:"📅", name:"One Week Strong",   desc:"Complete 7 days", check:(s: any)=>countDone(s)>=7 },
-  { id:"halfway",     icon:"⚖️", name:"Halfway There",     desc:`Complete ${Math.round(TOTAL_DAYS/2)} days`, check:(s: any)=>countDone(s)>=Math.round(TOTAL_DAYS/2) },
-  { id:"full_month",  icon:"👑", name:"Arc Complete",      desc:`Complete all ${TOTAL_DAYS} days`, check:(s: any)=>countDone(s)>=TOTAL_DAYS },
-  { id:"first_boss",  icon:"⚔️", name:"Boss Slayer",       desc:"Clear your first Boss Battle", check:(s: any)=>BOSS_DAY_INDICES.some(i=>s.completed[i]) },
-  { id:"all_boss",    icon:"🏆", name:"Boss Conqueror",    desc:"Clear all Boss Battles", check:(s: any)=>BOSS_DAY_INDICES.every(i=>s.completed[i]) },
-  { id:"streak5",     icon:"🔥", name:"On Fire",           desc:"Reach a 5-day streak", check:(s: any)=>computeStreak(s)>=5 },
-  { id:"streak15",    icon:"🌋", name:"Unstoppable",       desc:"Reach a 15-day streak", check:(s: any)=>computeStreak(s)>=15 },
-  { id:"level5",      icon:"⭐", name:"Rising Hunter",      desc:"Reach Level 5", check:(s: any)=>s.level>=5 },
-  { id:"level15",     icon:"🌟", name:"Elite Hunter",       desc:"Reach Level 15", check:(s: any)=>s.level>=15 },
-  { id:"neetcode125", icon:"🧩", name:"Half the Grind",     desc:"Solve 125 NeetCode problems", check:(s: any)=>countDsaSolved(s)>=125 },
-  { id:"neetcode250", icon:"💯", name:"NeetCode 250 Cleared", desc:"Solve all 250 NeetCode problems", check:(s: any)=>countDsaSolved(s)>=250 },
-  { id:"notes10",     icon:"📝", name:"Diligent Scholar",  desc:"Write notes on 10 different days", check:(s: any)=>Object.values(s.notes).filter(n=>n&&n.trim().length>0).length>=10 },
-];
 

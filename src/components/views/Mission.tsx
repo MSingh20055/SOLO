@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useSoloSystem } from '../../context/SoloSystemContext';
 import { ROADMAP, TOTAL_DAYS, CAT_META } from '../../data/roadmap';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import clsx from 'clsx';
-import { CheckCircle2, Circle } from 'lucide-react';
 import './views.css';
 
 export const Mission: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Calendar as CalendarIcon, Target, LayoutDashboard, Menu } from 'lucide-react';
+import { Trophy, Calendar as CalendarIcon, Target, LayoutDashboard } from 'lucide-react';
 import clsx from 'clsx';
 import './layout.css';
 
@@ -15,8 +15,6 @@ export const TopNav: React.FC<TopNavProps> = ({ currentTab, setTab }) => {
     { id: 'mission', label: 'Mission', icon: Target },
     { id: 'calendar', label: 'Calendar', icon: CalendarIcon },
     { id: 'stats', label: 'Statistics', icon: Trophy },
-    { id: 'leetcode150', label: 'Top 150', icon: Target },
-    { id: 'sql50', label: 'SQL 50', icon: LayoutDashboard },
   ];
 
   return (

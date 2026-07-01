@@ -3,9 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './modals.css';
 
 interface BaseModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
 const Backdrop: React.FC<BaseModalProps> = ({ children, onClick }: any) => (
