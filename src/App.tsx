@@ -4,7 +4,6 @@ import { Dashboard } from './components/views/Dashboard';
 import { Mission } from './components/views/Mission';
 import { Calendar } from './components/views/Calendar';
 import { Stats } from './components/views/Stats';
-import { SoloSystemProvider } from './context/SoloSystemContext';
 import { AnimatePresence } from 'framer-motion';
 
 function App() {

@@ -115,10 +115,8 @@ function buildRoadmap(): any[] {
     const isFinal = day === TOTAL_DAYS;
 
     if(isBoss){
-      const reviewSet = recentForReview.slice(-8);
-      const reviewText = (start,end) => {
-        const slice = reviewSet.slice(start,end);
-        return slice.length ? slice.map(p=>p.name).join(", ") : "recent problems";
+      const reviewText = (start: number, end: number) => {
+        return recentForReview.slice(start, end).map((p: any) => p.name).join(" + ") || "Previous Patterns";
       };
       roadmap.push({
         dsa: isFinal
