@@ -49,9 +49,20 @@ export const TopNav: React.FC<TopNavProps> = ({ currentTab, setTab }) => {
         })}
       </nav>
       
-      <button className="btn-secondary ach-trigger">
-        🏅 Achievements
-      </button>
+      <div style={{ display: 'flex', gap: '10px' }}>
+        <a 
+          href="https://docs.google.com/spreadsheets/d/14eT0uVprFkHc-BGHh8_VihNUsZJ5YdV7L1Ix9z3IhKQ/edit?gid=234757707#gid=234757707" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="btn-secondary ach-trigger"
+          style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
+        >
+          📊 DSA Sheet
+        </a>
+        <button className="btn-secondary ach-trigger">
+          🏅 Achievements
+        </button>
+      </div>
     </header>
   );
 };
